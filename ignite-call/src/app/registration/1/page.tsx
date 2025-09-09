@@ -7,6 +7,7 @@ export default function RegistrationOne() {
       <Resumer
         title="Bem-vindo ao Ignite Call"
         children="Precisamos de algumas informações para criar seu perfil! Ah, você pode editar essas informações depois."
+        step={1}
       />
       <div className="w-full max-w-127.5 flex flex-col flex-wrap gap-4 p-6 bg-[#202024] rounded-lg">
         <FormComponents />
