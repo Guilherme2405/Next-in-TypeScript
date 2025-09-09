@@ -1,7 +1,7 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-   <div><h1>hello word</h1></div>
+    <div className="flex flex-col flex-wrap items-center justify-center gap-4">
+      <h1>home</h1>
+    </div>
   );
 }
