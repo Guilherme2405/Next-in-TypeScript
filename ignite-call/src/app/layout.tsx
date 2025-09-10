@@ -1,8 +1,10 @@
-
 import type { Metadata } from "next";
-import { Roboto, Roboto_Mono } from "next/font/google";
-import "./globals.css";
 
+import { Roboto, Roboto_Mono } from "next/font/google";
+
+import { DateProvider } from "@/src/context/DateContext";
+
+import "./globals.css";
 const RobotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
@@ -28,7 +30,9 @@ export default function RootLayout({
       lang="pt-br"
       className={`${RobotoMono.variable} ${RobotoFont.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <DateProvider>{children}</DateProvider>
+      </body>
     </html>
   );
 }

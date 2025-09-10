@@ -1,4 +1,5 @@
-import { SubmitingButton } from "../submitingButton";
+"use client";
+import { SubmitingButton } from "../../../components/submitingButton";
 
 export function FormComponents() {
   return (
@@ -12,7 +13,7 @@ export function FormComponents() {
               id="name"
               name="name"
               placeholder="zuzsten"
-              className="w-full h-12 bg-[#121214] rounded-lg p-4 text-white"
+              className="w-full h-12 bg-[#121214] rounded-lg p-4 text-white focus:outline-none border-2 border-transparent focus:border-[#00B37E] transition-all focus:duration-300"
             />
           </div>
 
@@ -23,7 +24,7 @@ export function FormComponents() {
               id="name"
               name="name"
               placeholder="John Doe"
-              className="w-full h-12 bg-[#121214] rounded-lg p-4 text-white"
+              className="w-full h-12 bg-[#121214] rounded-lg p-4 text-white focus:outline-none border-2 border-transparent focus:border-[#00B37E] transition-all focus:duration-300"
             />
           </div>
           <SubmitingButton children="Próximo passo" />

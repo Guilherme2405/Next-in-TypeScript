@@ -7,7 +7,7 @@ export function FormGoogleAgend() {
         <h1>Google Agenda</h1>
 
         <button className="w-28 h-10 bg-transparent rounded-lg p-4 text-white flex items-center justify-center gap-2 border-solid border-2 border-[#00B37E] px-6 py-3">
-          <span className="flex items-center justify-center gap-2 text-[#00B37E]">
+          <span className="flex items-center justify-center gap-2 text-[#00B37E] font-semibold">
             Conectar <ArrowRight size={16} className="fill-[#00B37E]" />
           </span>
         </button>
