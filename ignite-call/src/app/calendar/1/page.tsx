@@ -6,7 +6,7 @@ export default function Calendar1() {
 
 
   return (
-    <div>
+    <div className="w-full flex flex-col flex-wrap items-center justify-center gap-6 pb-6">
       <div className="flex flex-col flex-wrap items-center justify-center gap-2">
         <Avatar />
         <h1 className="text-2xl font-bold text-white">jhon doe</h1>
