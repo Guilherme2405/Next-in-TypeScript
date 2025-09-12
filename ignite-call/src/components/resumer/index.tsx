@@ -17,12 +17,28 @@ export function Resumer({ children, title, step }: ResumerProps) {
       </div>
       {useProgress && (
         <>
-          <span className="text-[12px] text-grey-200">Passo {step} de 4</span>
+          <span className="text-[12px] text-gray-400">Passo {step} de 4</span>
           <div className="flex gap-2 flex-wrap items-center">
-            <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
-            <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
-            <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
-            <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
+            {step >= 1 ? (
+              <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
+            ) : (
+              <div className="h-1 sm:w-29.25 w-18 bg-[#29292E] rounded-full" />
+            )}
+            {step >= 2 ? (
+              <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
+            ) : (
+              <div className="h-1 sm:w-29.25 w-18 bg-[#29292E] rounded-full" />
+            )}
+            {step >= 3 ? (
+              <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
+            ) : (
+              <div className="h-1 sm:w-29.25 w-18 bg-[#29292E] rounded-full" />
+            )}
+            {step === 4 ? (
+              <div className="h-1 sm:w-29.25 w-18 bg-white rounded-full" />
+            ) : (
+              <div className="h-1 sm:w-29.25 w-18 bg-[#29292E] rounded-full" />
+            )}
           </div>
         </>
       )}

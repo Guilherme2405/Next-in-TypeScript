@@ -6,11 +6,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import maskAuth from "@/public/images/mask-auth.png";
 import calendarAuth from "@/public/images/calendar-auth.png";
-import { error } from "console";
 
 const handlePreSubmitschema = z.object({
   username: z
@@ -23,22 +24,35 @@ const handlePreSubmitschema = z.object({
     .transform((val) => val.toLowerCase()),
 });
 
-async function handlePreSubmit(data: z.infer<typeof handlePreSubmitschema>) {
-  console.log(data.username);
-}
-
 export default function LandingAuth() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<z.infer<typeof handlePreSubmitschema>>({
     resolver: zodResolver(handlePreSubmitschema),
   });
 
+  async function handlePreSubmit(data: z.infer<typeof handlePreSubmitschema>) {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      toast.success("Username cadastrado com sucesso", {
+        style: { background: "#00875F", color: "#fff" },
+      });
+      router.push(`/registration/1?username=${data.username}`);
+    } catch (error) {
+       toast.error("Erro ao cadastrar username", {
+         style: { background: "#F75A68", color: "#fff" },
+       });
+      console.log(error);
+    }
+  }
+
   return (
     <div
-      className="w-full h-170 flex flex-wrap items-center justify-between md:gap-4 gap-0"
+      className="w-full h-170 flex flex-wrap items-center justify-between xs:gap-4 gap-0"
       style={{
         backgroundImage: `url(${maskAuth.src})`,
         backgroundSize: "cover",
@@ -71,18 +85,25 @@ export default function LandingAuth() {
               />
 
               <button
-                className="w-30 md:h-12 h-10 bg-[#00875F] rounded-lg text-white flex items-center justify-center gap-2 px-3 py-3 cursor-pointer hover:bg-[#00B37E] transition-all duration-100"
+                className="w-30 md:h-12 h-10 bg-[#00875F] rounded-lg text-white flex items-center justify-center gap-2 px-3 py-3 cursor-pointer hover:bg-[#00B37E] transition-all duration-100 disabled:opacity-50 disabled:cursor-not-allowed"
                 type="submit"
+                disabled={isSubmitting}
               >
                 <span>Reservar</span>
                 <ArrowRight size={16} />
+                {
+                  (errors.username &&
+                    toast.error(errors.username.message, {
+                      style: { background: "#F75A68", color: "#fff" },
+                    }),
+                  "")
+                }
               </button>
             </form>
           </div>
         </div>
       </div>
-      {errors.username && toast.error(errors.username.message, {})}
-      <Toaster />
+
       <div>
         <Image
           src={calendarAuth}
@@ -93,6 +114,7 @@ export default function LandingAuth() {
           priority
         />
       </div>
+      <Toaster />
     </div>
   );
 }
