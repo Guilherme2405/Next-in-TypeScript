@@ -9,6 +9,8 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { useSearchParams, useRouter } from "next/navigation";
 
+import { api } from "@/src/lib/axios";
+
 import { SubmitingButton } from "../../../components/submitingButton";
 
 const handlePreSubmitSchema = z.object({
@@ -44,9 +46,12 @@ export function FormComponents() {
     setValue("username", String(searchParams.get("username")));
   }, [searchParams.get("username")]);
 
+  
+
   async function handlePreSubmit(data: z.infer<typeof handlePreSubmitSchema>) {
     try {
       await new Promise((resolve) => setTimeout(resolve, 3000));
+      await api.post("/users", data);
       toast.success("Username cadastrado com sucesso", {
         style: { background: "#00875F", color: "#fff" },
       });

@@ -1,7 +1,7 @@
 "use client";
 import { FormComponents } from "@/src/app/registration/1/FormName";
-import { Resumer } from "@/src/components/resumer";
 
+import { Resumer } from "@/src/components/resumer";
 export default function RegistrationOne() {
   return (
     <div className="flex flex-col flex-wrap items-center justify-center gap-4 ">
