@@ -46,15 +46,13 @@ export function FormComponents() {
     setValue("username", String(searchParams.get("username")));
   }, [searchParams.get("username")]);
 
-  
-
   async function handlePreSubmit(data: z.infer<typeof handlePreSubmitSchema>) {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
       await api.post("/users", data);
       toast.success("Username cadastrado com sucesso", {
         style: { background: "#00875F", color: "#fff" },
       });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       router.push("/registration/2");
     } catch (error) {
       toast.error("Erro ao cadastrar nome", {

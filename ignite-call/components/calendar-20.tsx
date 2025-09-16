@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -10,10 +9,6 @@ import { useDate } from "@/src/hook/useDate";
 
 export default function Calendar20() {
   const { date, setDate, selectedTime, setSelectedTime } = useDate();
-
-  useEffect(() => {
-    console.log(selectedTime);
-  }, []);
 
   const timeSlots = Array.from({ length: 9 }, (_, i) => {
     const totalMinutes = i * 60;
@@ -36,9 +31,9 @@ export default function Calendar20() {
           <div className="p-6">
             <Calendar
               mode="single"
-              selected={date}
+              selected={date ?? undefined}
               onSelect={setDate}
-              defaultMonth={date}
+              defaultMonth={date ?? undefined}
               required
               disabled={bookedDates}
               showOutsideDays={false}

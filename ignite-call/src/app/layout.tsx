@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
-
 import { Roboto, Roboto_Mono } from "next/font/google";
-
-import { DateProvider } from "@/src/context/DateContext";
+import { Metadata } from "next";
 
 import "./globals.css";
 const RobotoMono = Roboto_Mono({
@@ -22,17 +19,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="pt-br"
       className={`${RobotoMono.variable} ${RobotoFont.variable} antialiased`}
     >
-      <body>
-        <DateProvider>{children}</DateProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

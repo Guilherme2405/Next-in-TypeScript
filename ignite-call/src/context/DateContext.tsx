@@ -2,24 +2,24 @@
 import { createContext, useState, useEffect } from "react";
 
 export const DateContext = createContext<{
-  date: Date;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
+  date: Date | null;
+  setDate: React.Dispatch<React.SetStateAction<Date | null>>;
   selectedTime: string;
   setSelectedTime: React.Dispatch<React.SetStateAction<string>>;
 }>({
-  date: new Date(),
+  date: null,
   setDate: () => {},
   selectedTime: "09:00",
   setSelectedTime: () => {},
 });
 
 export const DateProvider = ({ children }: { children: React.ReactNode }) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string>("09:00");
 
   useEffect(() => {
-    console.log(selectedTime);
-  }, [selectedTime]);
+    setDate(new Date());
+  }, []);
 
   return (
     <DateContext.Provider
